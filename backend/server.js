@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(cors(
   {
-    origin: "https://whatsupp-frontend.vercel.app",
+    origin: "https://localhost:5173",
     credentials: true
   }
 ))
@@ -29,7 +29,11 @@ app.use("/api/auth", authRoute);
 app.use("/api/message", messageRoute);
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../frontend/dist")))
+  app.use(express.static(path.join(__dirname, "../frontend/dist")));
+
+  app.get("*",(req,res)=>{
+    res.sendFile(path.join(__dirname,"../frontend","dist","index.html"));
+  })
 }
 
 server.listen(PORT || 6000, (req, res) => {

@@ -1,0 +1,11 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+ @plugin "daisyui" {
+   themes: light --default;
+ }
+
+body{
+    background-color: rgb(255, 255, 255);
+    color: black;
+}
